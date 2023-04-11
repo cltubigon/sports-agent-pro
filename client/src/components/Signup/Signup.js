@@ -64,6 +64,7 @@ const Signup = () => {
         user_type: userType,
       },
     }
+
     axios
       .request(options)
       .then(function (response) {
