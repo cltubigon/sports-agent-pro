@@ -39,7 +39,6 @@ const Signup = () => {
       data: {
       },
     }
-
     axios
       .request(options)
       .then(function (response) {
