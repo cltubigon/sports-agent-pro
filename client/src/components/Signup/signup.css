@@ -31,4 +31,22 @@
   .selected .icon {
     color: var(--light-color) !important;
   }
+  .invalid-message {
+    display: none;
+  }
+  /* input:invalid { */
+  input:invalid ~ .invalid-message {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    align-content: center;
+    text-align: center;
+    width: auto;
+    padding: 5px 50px;
+    border: 1px solid #333;
+    /* bottom: 0; */
+    position: absolute;
+    background-color: rgb(236, 236, 236);
+    color: #333;
+  }
   /* end of login page */
