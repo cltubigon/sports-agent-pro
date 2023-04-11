@@ -6,9 +6,13 @@
 // Set token into cookie
 // --> npm add cookie-parser
 
-// Edited
 
+// ---------- GIT COMMANDS ----------- //
 // git status
 // git add .
 // git commit -m "Commit message"
 // git push -u origin main
+
+// Restore files from Git
+// git log --oneline -- <file-name>
+// git checkout <commit-ID> -- <file-name>
