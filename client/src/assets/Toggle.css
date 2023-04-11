@@ -1,0 +1,41 @@
+.toggle {
+  display: flex;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 24px;
+  width: 70px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.dark-theme .sun {
+  cursor: default;
+  opacity: 0.5;
+}
+.light-theme .moon {
+  opacity: 0.5;
+  cursor: default;
+}
+.dark-theme .sun:hover {
+  cursor: pointer;
+}
+.light-theme .moon:hover {
+  cursor: pointer;
+}
+.dark-theme .moon:active {
+  /* opacity: 0.5; */
+  pointer-events: none;
+}
+.light-theme .sun:active {
+  /* opacity: 0.5; */
+  pointer-events: none;
+}
+.dark-theme .toggle {
+  background-color: var(--dark-color);
+}
+.light-theme .toggle {
+  background-color: var(--light-color);
+}
