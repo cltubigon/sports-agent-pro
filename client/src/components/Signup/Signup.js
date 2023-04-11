@@ -37,12 +37,6 @@ const Signup = () => {
       url: "http://localhost:8000/api/auth/register",
       headers: { "Content-Type": "application/json" },
       data: {
-        username: "spacarlo2b",
-        first_name: "Carlo",
-        last_name: "Tubigon",
-        email: "cltubigonSPA2a@gmail.com",
-        phone: "+639167894145",
-        password: "Dragonfable12356",
       },
     }
 
