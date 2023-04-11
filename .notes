@@ -15,4 +15,4 @@
 
 // Restore files from Git
 // git log --oneline -- <file-name>
-// git checkout <commit-ID> -- <file-name>
+// git checkout .  or  git checkout <commit-ID> -- <file-name>
