@@ -3,7 +3,9 @@ import { createContext, useEffect, useReducer } from "react";
 const INITIAL_STATE = {
   email: JSON.parse(localStorage.getItem("email")) || null,
   loading: false,
-  error: null,
+  error: false,
+  notification: false,
+  notificationMessage: null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -26,13 +28,23 @@ const AuthReducer = (state, action) => {
       return {
         email: null,
         loading: false,
-        error: action.payload,
+        notification: true,
+        error: action.payload.theError,
+        notificationMessage: action.payload.theNotificationMessage,
       };
     case "LOGOUT":
       return {
         email: null,
         loading: false,
         error: null,
+      };
+    case "NOTIFICATION_DISPLAYED":
+      return {
+        email: null,
+        loading: false,
+        error: null,
+        notification: false,
+        notificationMessage: null,
       };
     default:
       return state;
@@ -52,6 +64,8 @@ export const AuthContextProvider = ({ children }) => {
         email: state.email,
         loading: state.loading,
         error: state.error,
+        notification: state.notification,
+        notificationMessage: state.notificationMessage,
         dispatch,
       }}
     >

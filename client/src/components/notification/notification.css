@@ -1,0 +1,33 @@
+.green-notification {
+    @apply
+    bg-[green] fixed top-0 z-10 shadow-md w-full h-[50px] flex justify-center items-center
+}
+.green-notification {
+    animation: slide-in-out 1.8s ease 0s 1 normal forwards;
+}
+.red-notification {
+    @apply
+    bg-[red] fixed top-0 z-10 shadow-md w-full h-[50px] flex justify-center items-center
+}
+.red-notification {
+    animation: slide-in-out 1.8s ease 0s 1 normal forwards;
+}
+
+@keyframes slide-in-out {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}

@@ -1,52 +1,48 @@
-/* Login Page */
-.bg-light-important {
-    background-color: var(--light-color) !important;
-    color: var(--dark-color) !important;
-    font-size: 14px !important;
-    padding: 1px 17px !important;
-    border-radius: 5px !important;
-    border: 1px solid #89949F !important;
-    width: auto !important
-  }
-  .bg-dark-important {
-    background-color: var(--dark-color) !important;
-    color: var(--light-color) !important;
-    font-size: 14px !important;
-    padding: 1px 17px !important;
-    border-radius: 5px !important;
-    border: 1px solid #89949F !important;
-    width: auto !important
-  }
-  .login-button {
-    background-color: var(--button-bg) !important;
-    border: none !important;
-  }
-  .selected {
-    @apply
-    bg-[#0980f7ab]
-    text-[var(--light-color)]
-    border-[1px]
-    border-[var(--button-bg)]
-  }
-  .selected .icon {
-    color: var(--light-color) !important;
-  }
-  .invalid-message {
-    display: none;
-  }
-  /* input:invalid { */
-  input:invalid ~ .invalid-message {
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    align-content: center;
-    text-align: center;
-    width: auto;
-    padding: 5px 50px;
-    border: 1px solid #333;
-    /* bottom: 0; */
-    position: absolute;
-    background-color: rgb(236, 236, 236);
-    color: #333;
-  }
-  /* end of login page */
+/* Signup Page */
+.input-wrapper {
+  @apply
+  flex
+  flex-col
+  mb-[14px];
+}
+label {
+  @apply
+  text-sm
+  mb-1
+  flex
+}
+input {
+  border-radius: 5px !important;
+  font-size: 14px;
+  padding: 9px;
+}
+.gpdr {
+  @apply
+  mt-[19px]
+  text-center
+}
+input[type="checkbox"] {
+  @apply
+  mr-2
+  top-1
+  w-4
+}
+.gpdr-wrapper label {
+  justify-content: center !important;
+}
+.selected {
+  @apply
+  bg-[#0980f7ab]
+  text-[var(--light-color)]
+  border-[1px]
+  border-[var(--button-bg)]
+}
+.selected .icon {
+  color: var(--light-color) !important;
+}
+.account-types {
+  @apply
+  flex pt-3
+  pb-3
+  my-8 border-[1px] border-[#ccc] cursor-pointer rounded-md
+}
