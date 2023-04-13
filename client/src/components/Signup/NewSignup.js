@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { DevTool } from "@hookform/devtools"
 import axios from "axios"
-import { link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
 import "./signup.css"
 import {
@@ -13,17 +12,16 @@ import {
   FaUserTie,
   FaChevronLeft,
 } from "react-icons/fa"
-import Notification from "../notification/Notification"
 
 const NewSignup = () => {
   const [userType, setUserType] = useState(null)
   const [isFirstStep, setIsFirstStep] = useState(true)
-  const [activateButton, setActivateButton] = useState(false)
+  // const [activateButton, setActivateButton] = useState(true)
   const navigate = useNavigate()
   const { register, control, handleSubmit, formState, watch } = useForm()
   const { errors } = formState
 
-  const { notification, loading, error, dispatch } = useContext(AuthContext)
+  const { loading, error, dispatch } = useContext(AuthContext)
   const onSubmit = (data) => {
     dispatch({ type: "LOGIN_START" })
     const options = {
@@ -32,7 +30,6 @@ const NewSignup = () => {
       headers: { "Content-Type": "application/json" },
       data: {
         username: data.first_name + Math.floor(Math.random() * 1000),
-        // username: data.first_name,
         first_name: data.first_name,
         last_name: data.last_name,
         phone: data.phone,
@@ -45,11 +42,10 @@ const NewSignup = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response)
         navigate("/")
       })
+
       .catch(function (error) {
-        console.log(error)
         switch (true) {
           case error.response.data.message.includes("dup key: { username:"):
             dispatch({
@@ -109,24 +105,25 @@ const NewSignup = () => {
   ]
   const handleUserTypeClick = (user) => {
     setUserType(user)
-    setActivateButton((prev) => prev = true)
   }
-
+  console.log("Signup Form rendered")
   return (
     <div>
-        {notification && <Notification/>}
 
-        {typeOfUsers?.map((user) => {
-          return (
-            <div
+        {isFirstStep && 
+        <div>
+          <h2 className="signupcss-accttype">Select account type</h2>
+          {typeOfUsers?.map((user) => {
+            return (
+              <div
               onClick={() => handleUserTypeClick(user.type)}
               className={
                 userType == user.type
-                  ? "account-types selected"
-                  : "account-types"
+                ? "signupcss-account-types selected"
+                : "signupcss-account-types"
               }
               key={user.id}
-            >
+              >
               <div className="flex items-center w-[20%] justify-center text-[#89949F]">
                 {user.icon}
               </div>
@@ -137,8 +134,18 @@ const NewSignup = () => {
             </div>
           )
         })}
-      <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="input-wrapper">
+        <button className={!userType ? "signupcss-continue-btn" : ""} onClick={()=> setIsFirstStep((prev)=> !prev)}>Continue</button>
+        </div>
+        }
+
+      {!isFirstStep && 
+      <div>
+        <div className="signupcss-form-header">
+        <FaChevronLeft onClick={()=> setIsFirstStep((prev)=>!prev)} className="signupcss-cursor-pointer"/>
+        </div>
+        <h2 className="signupcss-accttype">Create your account</h2>
+      <form className="signupcss-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div className="signupcss-input-wrapper">
           <label htmlFor="first_name">First Name</label>
           <input
             type="text"
@@ -150,10 +157,10 @@ const NewSignup = () => {
               },
             })}
           />
-          <p>{errors.first_name?.message}</p>
+          {errors.first_name && <p className="signupcss-field-errors">{errors.first_name.message}</p>}
         </div>
 
-        <div className="input-wrapper">
+        <div className="signupcss-input-wrapper">
           <label htmlFor="last_name">Last Name</label>
           <input
             type="text"
@@ -165,10 +172,10 @@ const NewSignup = () => {
               },
             })}
           />
-          <p>{errors.last_name?.message}</p>
+          {errors.last_name && <p className="signupcss-field-errors">{errors.last_name.message}</p>}
         </div>
 
-        <div className="input-wrapper">
+        <div className="signupcss-input-wrapper">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -184,10 +191,10 @@ const NewSignup = () => {
               },
             })}
           />
-          <p>{errors.email?.message}</p>
+          {errors.email && <p className="signupcss-field-errors">{errors.email.message}</p>}
         </div>
 
-        <div className="input-wrapper">
+        <div className="signupcss-input-wrapper">
           <label htmlFor="phone">Phone</label>
           <input
             type="text"
@@ -199,13 +206,13 @@ const NewSignup = () => {
               },
             })}
           />
-          <p>{errors.phone?.message}</p>
+          {errors.phone && <p className="signupcss-field-errors">{errors.phone.message}</p>}
         </div>
 
-        <div className="input-wrapper">
+        <div className="signupcss-input-wrapper">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             {...register("password", {
               required: "Password is required",
@@ -219,26 +226,26 @@ const NewSignup = () => {
               },
             })}
           />
-          <p>{errors.password?.message}</p>
+          {errors.password && <p className="signupcss-field-errors">{errors.password.message}</p>}
         </div>
 
-        <div className="input-wrapper">
+        <div className="signupcss-input-wrapper">
           <label htmlFor="confirm_password">Confirm password</label>
           <input
-            type="text"
+            type="password"
             id="confirm_password"
             {...register("confirm_password", {
               validate: (fieldValue) => {
-                return fieldValue === watch("password") || "Password do not match"
+                return fieldValue === watch("password") || "Passwords do not match"
               },
             })}
           />
-          <p>{errors.confirm_password?.message}</p>
+          {errors.confirm_password && <p className="signupcss-field-errors">{errors.confirm_password.message}</p>}
         </div>
-        <button type="submit">Signup</button>
+        <button className="mt-[15px]" type="submit">Signup</button>
 
-        <div className="gpdr-wrapper">
-          <label className="gpdr" htmlFor="gpdr_agreement">
+        <div className="signupcss-gpdr-wrapper">
+          <label className="signupcss-gpdr" htmlFor="gpdr_agreement">
             <input
               type="checkbox"
               id="gpdr_agreement"
@@ -248,10 +255,12 @@ const NewSignup = () => {
             />
             I agree to the Sports Agent Pro Terms of use and Privacy policy
           </label>
-          <p>{errors.gpdr_agreement?.message}</p>
+          {errors.gpdr_agreement && <p className="signupcss-gpdr-field-error">{errors.gpdr_agreement.message}</p>}
         </div>
 
       </form>
+      </div>
+      }
       
       {/* <DevTool control={control} /> */}
     </div>

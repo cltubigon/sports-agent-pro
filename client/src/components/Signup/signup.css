@@ -1,9 +1,9 @@
-/* Signup Page */
-.input-wrapper {
+.signupcss-input-wrapper {
   @apply
+  relative
   flex
   flex-col
-  mb-[14px];
+  mb-[14px]
 }
 label {
   @apply
@@ -16,10 +16,10 @@ input {
   font-size: 14px;
   padding: 9px;
 }
-.gpdr {
+.signupcss-gpdr {
   @apply
   mt-[19px]
-  text-center
+  text-xs md:text-sm
 }
 input[type="checkbox"] {
   @apply
@@ -27,7 +27,8 @@ input[type="checkbox"] {
   top-1
   w-4
 }
-.gpdr-wrapper label {
+.signupcss-gpdr-wrapper label {
+  position: relative;
   justify-content: center !important;
 }
 .selected {
@@ -40,9 +41,68 @@ input[type="checkbox"] {
 .selected .icon {
   color: var(--light-color) !important;
 }
-.account-types {
+.signupcss-account-types {
   @apply
   flex pt-3
   pb-3
   my-8 border-[1px] border-[#ccc] cursor-pointer rounded-md
+}
+.signupcss-accttype {
+  @apply
+  text-[26px]
+  font-semibold
+  text-center
+  pt-7
+  pb-1
+}
+.signupcss-form-header {
+  @apply
+  absolute
+  top-4
+}
+.signupcss-form {
+  @apply
+  mt-2
+}
+.signupcss-field-errors {
+  @apply
+  text-sm absolute border-[1px] border-[#9b5656] bg-red-200 py-[2px] px-5 rounded-[5px] bottom-[8px] shadow-md z-10 right-[8px]
+}
+.signupcss-gpdr-field-error {
+  @apply
+  text-sm
+  text-red-600
+  text-center
+}
+
+.signupcss-continue-btn {
+  @apply
+pointer-events-none opacity-60
+}
+
+
+.signupcss-form-container.light-theme {
+  @apply
+  relative mx-auto sm:w-[500px] w-full px-[24px] sm:rounded-md pb-7
+}
+.signupcss-form-container.dark-theme {
+  @apply
+  relative mx-auto sm:w-[500px] w-full px-[24px] sm:rounded-md pb-7
+}
+.signupcss-form-container.dark-theme input {
+  @apply
+  bg-[#2a2a42]
+}
+.signupcss-form-container.dark-theme .signupcss-field-errors {
+  @apply
+  text-[var(--dark-color)]
+}
+
+.signupcss-login-button {
+  background-color: var(--button-bg) !important;
+  border: none !important;
+}
+.signupcss-login-signup-toggle {
+  @apply
+  border-[1px] border-[#818181] rounded py-1 px-2 ml-3
 }

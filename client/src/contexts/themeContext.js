@@ -9,7 +9,6 @@ export function ThemeProvider({children}) {
     
     function toggleTheme() {
             setDarkTheme(darktheme => !darktheme)
-            console.log("rendered once")
     }
     return (
         <ThemeContext.Provider value={darkTheme}>

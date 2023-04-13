@@ -13,11 +13,12 @@ const Notification = () => {
 
     return () => clearTimeout(timer)
   }, [notification])
+  console.log("Notification rendered")
   return (
     <>
       {notification && (
           <div className={error ? "red-notification" : "green-notification"}>
-            <h2 className="text-2xl text-white">{notificationMessage}</h2>
+            <h2 className="text-1xl text-white">{notificationMessage}</h2>
             <p onClick={()=> dispatch({type: "NOTIFICATION_DISPLAYED"})} className="text-[var(--primary-color)] z-999 bg-white w-5 h-5 rounded-[100px] shadow-md flex justify-center items-center absolute top-3 right-5 cursor-pointer text-sm">
               X
             </p>

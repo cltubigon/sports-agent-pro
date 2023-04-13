@@ -23,6 +23,8 @@ const AuthReducer = (state, action) => {
         email: action.payload,
         loading: false,
         error: null,
+        notification: true,
+        notificationMessage: "Login Successful",
       };
     case "LOGIN_FAILURE":
       return {
